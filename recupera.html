@@ -1,0 +1,45 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Recuperação de senha</title>
+  </head>
+  <body>
+    <form class="action" method="post">
+<input placeholder="Seu email:"name="email" type="text">
+      <input placeholder="Seu CPF" name="CPF" type="number">
+			<input  name ="OK" value="OK" type="submit">
+		</form>
+    <?php
+    if(isset($_POST[OK]))
+    {
+    	$novasenha =(md5(time()), 0, 6);
+    	$nscripitografada=md5(md5($novasenha));
+    	$email = $mysqli escape_string($_POST['email']);
+    }
+
+    if(!filter_var($email, FILTER_VALIDATE_EMAIL))
+    {
+    	$erro[]="E-mail invalido."
+    }
+
+    $search = "SELECT idAluno FROM aluno WHERE cpf = '$cpf'";
+    $sql = "SELECT cpf FROM cpf_alunos WHERE cpf = '$cpf'";
+    $query = mysqli_query($conn, $sql);
+    $searching = mysqli_query($conn, $search);
+    $validations = mysqli_fetch_array($searching);
+    $valida = mysqli_fetch_array($query);
+
+    if($valida==0){
+    	$erro[]="O email informado não está cadastrado"}
+
+    if(count($erro)==0){
+    		if(	mail($email,"Sua nova senha","Sua nova senha :".$novasenha)){
+    		$sql_code="UPDATE aluno SET senha='$nscripitografada' WHERE email ='$email'
+    		$sql_query=$mysqli query($sql_code) or die($mysqli error);
+    }
+    }
+    ?>
+  </body>
+</html>
