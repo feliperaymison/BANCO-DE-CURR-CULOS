@@ -1,0 +1,29 @@
+.mdl-card{
+  align-self: center;
+  margin-top: 100px;
+}
+.mdl-mini-footer .mdl-logo {
+  line-height: 0px;
+
+}
+@media screen and (max-width: 500px){
+  .mdl-card{
+    width: 70%;
+    margin-top: 10%;
+  }
+  .esconde-celular{
+    display: none;
+  }
+}
+
+@media screen and (min-width: 510px){
+  .mostra-celular{
+    display: none;
+  }
+}
+@media screen and (max-width: 1920px){
+  .mdl-layout__header-row {
+    height: 56px;
+    padding: 0 20px 0 20px;
+  }
+}
